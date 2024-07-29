@@ -1,0 +1,24 @@
+/* ..................user.......................................... */
+.user-in {
+  background-color: white;
+  color: black;
+  padding-bottom: 50px;
+  border-bottom: 1px solid gray;
+  padding-left: 30px;
+  gap: 20px;
+}
+
+.u-in {
+  font-size: 60px;
+}
+
+/* .......................navbar.......................... */
+.user {
+  color: white;
+  font-size: 35px;
+  margin-right: 20px;
+}
+
+.error-text {
+  font-size: 14px;
+}
