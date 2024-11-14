@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import noteContext from "../context/notes/noteContext";
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
 
+    const context = useContext(noteContext);
+    const { host } = context
     let navigate = useNavigate();
     const [errors, setErrors] = useState({});
     console.log(errors);
@@ -29,7 +32,7 @@ const Login = (props) => {
         if (Object.keys(validationError).length === 0) {
             try {
                 const response = await fetch(
-                    "https://inotebook-latest.onrender.com/api/auth/login",
+                    `${host}/api/auth/login`,
                     {
                         method: "POST",
                         headers: {
