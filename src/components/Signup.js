@@ -6,7 +6,7 @@ import noteContext from "../context/notes/noteContext";
 
 const Signup = (props) => {
   const context = useContext(noteContext);
-  const { host } = context
+  const { host } = context;
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -18,7 +18,7 @@ const Signup = (props) => {
   const [errors, setErrors] = useState({});
   console.log(errors);
   const validationError = validate(credentials);
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,17 +26,15 @@ const Signup = (props) => {
 
     if (Object.keys(validationError).length === 0) {
       try {
-        const response = await fetch(
-          `${host}/api/auth/createuser/`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        setIsLoading(true);
+        const response = await fetch(`${host}/api/auth/createuser/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-            body: JSON.stringify({ name, email, password }),
-          }
-        );
+          body: JSON.stringify({ name, email, password }),
+        });
         const json = await response.json();
         console.log(json);
 
@@ -52,9 +50,12 @@ const Signup = (props) => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     } else {
       setErrors(validationError);
+      setIsLoading(false);
     }
   };
 
@@ -113,7 +114,6 @@ const Signup = (props) => {
             name="password"
             onChange={onChange}
             minLength={5}
-
           />
           {errors.password && (
             <span className="error-text position-absolute text-danger">

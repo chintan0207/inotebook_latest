@@ -1,15 +1,13 @@
-import React from 'react'
-import Notes from './Notes'
+import React from "react";
+import Notes from "./Notes";
 
 const Home = (props) => {
-   const {showAlert} = props
-    return (
-        <div className='container mb-3'>
-            
-            <Notes showAlert={showAlert} />
+  const { showAlert } = props;
+  return (
+    <div className="container mb-3">
+      <Notes showAlert={showAlert} />
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Home
+export default Home;
