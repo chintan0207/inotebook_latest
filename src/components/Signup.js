@@ -141,7 +141,7 @@ const Signup = (props) => {
         </div>
 
         <button type="submit" className="btn btn-primary mb-4">
-          Submit
+          {isLoading ? `Loading...` : `Submit`}
         </button>
       </form>
     </div>
